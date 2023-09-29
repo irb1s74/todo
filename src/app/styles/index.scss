@@ -1,0 +1,43 @@
+@import "reset";
+@import "fonts";
+@import "global";
+@import "themes/normal";
+
+.app {
+  min-height: 100vh;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-color);
+  font: var(--font-m);
+  color: var(--text-color);
+}
+
+.content-page {
+  display: flex;
+}
+
+*::-webkit-scrollbar {
+  width: 12px; /* ширина scrollbar */
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background-color: var(--bg-color);
+  background-size: 350px auto;
+  border-left: var(--border-color) 1px solid;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--icon-color); /* цвет плашки */
+  //border-radius: 20px; /* закругления плашки */
+  border: 1px solid var(--accent-color); /* padding вокруг плашки */
+}
+
+.app *::-webkit-scrollbar {
+  width: 12px; /* ширина scrollbar */
+  height: 8px;
+}
+
+.app *::-webkit-scrollbar-track {
+  background: var(--bg-color); /* цвет дорожки */
+}
