@@ -1,0 +1,14 @@
+.ProjectListItem {
+  max-width: 250px;
+  width: 100%;
+  max-height: 150px;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  &:hover {
+    border: 1px solid var(--accent-color);
+  }
+}

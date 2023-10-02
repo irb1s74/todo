@@ -1,13 +1,12 @@
 import { type ReactNode, useEffect, useMemo, useState } from 'react'
 import { type Project } from 'entities/Projects'
+import { type Board } from 'entities/Task'
 import { Localstorage } from 'shared/const/localstorage'
 import { AppContext } from '../config/AppContext'
-import { type Board } from 'entities/Task'
 
 interface ThemeProviderProps {
-  children: ReactNode;
+  children: ReactNode
 }
-
 
 const AppProvider = (props: ThemeProviderProps) => {
   const { children } = props
@@ -15,12 +14,14 @@ const AppProvider = (props: ThemeProviderProps) => {
   const [projectTasks, setProjectTasks] = useState<Board[]>([])
 
   useEffect(() => {
-    let storage = JSON.parse(localStorage.getItem(Localstorage.PROJECTS_LOCALSTORAGE_KEY)!)
-    if (!storage) {
-      localStorage.setItem(Localstorage.PROJECTS_LOCALSTORAGE_KEY, JSON.stringify([]))
-      storage = JSON.parse(localStorage.getItem(Localstorage.PROJECTS_LOCALSTORAGE_KEY)!)
-    }
+    const storage = JSON.parse(localStorage.getItem(Localstorage.PROJECTS_LOCALSTORAGE_KEY)!)
     if (!projects.length && storage.length) setProjects(storage)
+  }, [])
+
+  useEffect(() => {
+    if (projects.length) {
+      localStorage.setItem(Localstorage.PROJECTS_LOCALSTORAGE_KEY, JSON.stringify(projects))
+    }
   }, [projects])
 
   const defaultProps = useMemo(
@@ -33,12 +34,7 @@ const AppProvider = (props: ThemeProviderProps) => {
     [projects, projectTasks],
   )
 
-  return (
-
-    <AppContext.Provider value={defaultProps}>
-      {children}
-    </AppContext.Provider>
-  )
+  return <AppContext.Provider value={defaultProps}>{children}</AppContext.Provider>
 }
 
 export default AppProvider

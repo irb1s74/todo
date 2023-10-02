@@ -1,7 +1,7 @@
 import { memo } from 'react'
-import Grid from '@mui/material/Unstable_Grid2'
 import { ProjectListItem } from 'entities/Projects'
 import { type Project } from '../../model/types/project'
+import { HStack, VStack } from 'shared/ui/Stack'
 
 interface ProjectListProps {
   data: Project[]
@@ -11,13 +11,10 @@ export const ProjectList = memo((props: ProjectListProps) => {
   const { data } = props
 
   return (
-    <Grid container spacing={3}>
+    <HStack gap='4'>
       {data.map((project) => (
-        <Grid key={project.id} xl={2}>
-          <ProjectListItem data={project} />
-        </Grid>
+        <ProjectListItem key={project.id} data={project} />
       ))}
-    </Grid>
+    </HStack>
   )
 })
-

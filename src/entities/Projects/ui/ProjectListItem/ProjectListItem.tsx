@@ -1,9 +1,10 @@
 import { memo, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Card, CardActionArea, CardContent, Typography } from '@mui/material'
 import { AppContext } from 'app/providers/AppProvider'
 import { type Project } from '../../model/types/project'
 import { getRouteTasks } from 'shared/const/router'
+import { Card } from 'shared/ui/Card'
+import cls from './ProjectListItem.module.scss'
 
 interface ProjectListItemProps {
   data: Project
@@ -20,20 +21,8 @@ export const ProjectListItem = memo((props: ProjectListItemProps) => {
   }
 
   return (
-    <Card
-      sx={{
-        maxHeight: '220px',
-        height: '220px',
-        width: '228px',
-        display: 'flex',
-        flexDirection: 'column',
-      }}
-    >
-      <CardActionArea onClick={handleClick} sx={{ flexGrow: 1 }}>
-        <CardContent>
-          <Typography gutterBottom variant='h5'>{data.title}</Typography>
-        </CardContent>
-      </CardActionArea>
+    <Card className={cls.ProjectListItem} onClick={handleClick}>
+      <h5>{data.title}</h5>
     </Card>
   )
 })

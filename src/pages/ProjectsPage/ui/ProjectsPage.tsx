@@ -1,15 +1,17 @@
-import { type ChangeEvent, useContext, useState } from 'react'
-import { Button, Container, Divider, Stack, TextField, Typography } from '@mui/material'
-import { ProjectList } from 'entities/Projects'
+import { useContext, useState } from 'react'
 import { AppContext } from 'app/providers/AppProvider'
-
+import { Page } from 'widget/Page'
+import { ProjectList } from 'entities/Projects'
+import { Button } from 'shared/ui/Button'
+import { Input } from 'shared/ui/Input'
+import { HStack, VStack } from 'shared/ui/Stack'
 
 const ProjectsPage = () => {
   const { projects, setProjects } = useContext(AppContext)
   const [name, setName] = useState('')
 
-  const handleChangeName = (e: ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value)
+  const handleChangeName = (value: string) => {
+    setName(value)
   }
 
   const handleCreateProject = () => {
@@ -20,17 +22,23 @@ const ProjectsPage = () => {
   }
 
   return (
-    <Container maxWidth='xl'>
-      <Typography variant='h4'>Проекты</Typography>
-      <Stack direction='row' alignItems='center' justifyContent='space-between'>
-        <TextField value={name} variant='outlined' placeholder='Назавание проекта' onChange={handleChangeName} />
-        <Button variant='contained' onClick={handleCreateProject}>
-          Создать
-        </Button>
-      </Stack>
-      <Divider sx={{ my: '10px' }} />
-      <ProjectList data={projects} />
-    </Container>
+    <Page>
+      <VStack align='stretch' gap='16'>
+        <h2>Проекты</h2>
+        <HStack gap={'24'}>
+          <Input
+            size='m'
+            value={name}
+            placeholder='Назавание проекта'
+            onChange={handleChangeName}
+          />
+          <Button variant='outline' onClick={handleCreateProject}>
+            Создать
+          </Button>
+        </HStack>
+        <ProjectList data={projects} />
+      </VStack>
+    </Page>
   )
 }
 export default ProjectsPage

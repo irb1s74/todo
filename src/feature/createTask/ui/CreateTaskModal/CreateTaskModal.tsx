@@ -1,5 +1,5 @@
-import { memo, useState } from 'react'
-import { Box, Modal, TextField } from '@mui/material'
+import { memo } from 'react'
+import { Modal } from 'shared/ui/Modal'
 
 interface CreateProjectModalProps {
   open: boolean
@@ -9,16 +9,11 @@ interface CreateProjectModalProps {
 export const CreateTaskModal = memo((props: CreateProjectModalProps) => {
   const { open, handleClose } = props
 
-
   return (
-    <Modal
-      open={open}
-      onClose={handleClose}
-    >
-      <Box sx={{ width: 400 }}>
-        <TextField variant='outlined' />
-      </Box>
-
+    <Modal isOpen={open} onClose={handleClose}>
+      {/* <Box sx={{ width: 400 }}> */}
+      {/*  <TextField variant='outlined' /> */}
+      {/* </Box> */}
     </Modal>
   )
 })

@@ -1,3 +1,3 @@
 import { lazy } from 'react'
 
-export const TasksPageAsync = lazy(()=> import('./TasksPage'))
+export const TasksPageAsync = lazy(() => import('./TasksPage'))
